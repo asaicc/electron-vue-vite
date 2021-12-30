@@ -1,9 +1,6 @@
 process.env.NODE_ENV = 'production'
 
 import { build as viteBuild } from 'vite'
-import chalk from 'chalk'
-
-const TAG = chalk.bgBlue(' build.mjs ')
 
 const viteConfigs = {
   main: 'configs/vite-main.config.ts',
@@ -13,7 +10,7 @@ const viteConfigs = {
 
 async function buildElectron() {
   for (const [name, configPath] of Object.entries(viteConfigs)) {
-    console.group(TAG, name)
+    console.group(' build.mjs ', name)
     await viteBuild({ configFile: configPath, mode: process.env.NODE_ENV })
     console.groupEnd()
     console.log() // for beautiful log.

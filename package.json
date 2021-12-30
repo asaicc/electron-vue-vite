@@ -1,12 +1,13 @@
 {
-  "name": "electron-vue-vite",
+  "name": "electron-vite-vue-ts",
   "version": "0.0.1",
   "main": "dist/main/index.cjs",
-  "author": "草鞋没号 <308487730@qq.com>",
+  "author": "www.asai.cc",
   "license": "MIT",
   "scripts": {
     "dev": "node scripts/watch.mjs",
-    "build": "node scripts/build.mjs && electron-builder"
+    "build": "node scripts/build.mjs && electron-builder",
+    "buildweb": "node scripts/build.mjs"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -15,12 +16,11 @@
     "vue": "^3.2.22"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.4",
-    "chalk": "^4.1.2",
-    "electron": "16.0.0",
-    "electron-builder": "^22.13.1",
-    "typescript": "^4.4.4",
-    "vite": "^2.6.14"
+    "@vitejs/plugin-vue": "^2.0.1",
+    "vite": "^2.7.10",
+    "typescript": "^4.5.4",
+    "electron": "16.0.5",
+    "electron-builder": "^22.14.5"
   },
   "env": {
     "//": "Used in build scripts",

@@ -1,20 +1,33 @@
-import { join } from 'path'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import pkg from '../package.json'
+import path from "path";
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import pkg from "../package.json";
 
-// https://vitejs.dev/config/
+const resolve = (str: string) => path.resolve(__dirname, str);
+
 export default defineConfig({
   mode: process.env.NODE_ENV,
-  root: join(__dirname, '../src/renderer'),
+  root: resolve("../src/renderer"),
   plugins: [vue()],
-  base: './',
+  base: "./",
+  resolve: {
+    alias: {
+      "@": resolve("../src/renderer"),
+    },
+  },
   build: {
     emptyOutDir: true,
-    outDir: '../../dist/renderer',
+    outDir: "../../dist/renderer",
   },
   server: {
     host: pkg.env.HOST,
     port: pkg.env.PORT,
+    proxy: {
+      "/api": {
+        target: "https://",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
-})
+});

@@ -5,9 +5,7 @@ import { join } from 'path'
 import electron from 'electron'
 import { spawn } from 'child_process'
 import { createServer, build as viteBuild } from 'vite'
-import chalk from 'chalk'
 
-const TAG = chalk.bgGreen(' dev.mjs ')
 const pkg = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf8'))
 
 /**

@@ -1,16 +1,6 @@
-# electron-vue-vite
+# electron-vite-vue-ts
 
-![awesome-vite](https://camo.githubusercontent.com/abb97269de2982c379cbc128bba93ba724d8822bfbe082737772bd4feb59cb54/68747470733a2f2f63646e2e7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652f643733303566333864323966656437386661383536353265336136336531353464643865383832392f6d656469612f62616467652e737667)
-![GitHub license](https://img.shields.io/github/license/caoxiemeihao/electron-vue-vite?style=flat)
-![GitHub stars](https://img.shields.io/github/stars/caoxiemeihao/electron-vue-vite?color=fa6470&style=flat)
-![GitHub forks](https://img.shields.io/github/forks/caoxiemeihao/electron-vue-vite?style=flat)
-
-
-**English | [简体中文](README.zh-CN.md)**
-
-🥳 Very simple `Electron` + `Vue3` + `Vite2` boilerplate.
-
-## Run Setup
+## 运行项目
 
   ```bash
   # clone the project
@@ -26,38 +16,38 @@
   npm run dev
   ```
 
-## Directory
+## 目录结构
 
-Once `dev` or `build` npm-script executed will be generate named `dist` folder. It has children dir of same as `src` folder, the purpose of this design can ensure the correct path calculation.
+一旦启动或打包脚本执行过，会在根目录产生 **`dist` 文件夹，里面的文件夹同 `src` 一模一样**；在使用一些路径计算时，尤其是相对路径计算；`dist` 与 `src` 里面保持相同的目录结构能避开好多问题
 
 ```tree
 ├
 ├── configs
-├   ├── vite-main.config.ts          Main-process config file, for -> src/main
-├   ├── vite-preload.config.ts       Preload-script config file, for -> src/preload
-├   ├── vite-renderer.config.ts      Renderer-script config file, for -> src/renderer
+├   ├── vite-main.config.ts          主进程配置文件，编译 src/main
+├   ├── vite-preload.config.ts       预加载脚本配置文件，编译 src/preload
+├   ├── vite-renderer.config.ts      渲染进程配置文件，编译 src/renderer
 ├
-├── dist                             After build, it's generated according to the "src" directory
+├── dist                             构建后，根据 src 目录生成
 ├   ├── main
 ├   ├── preload
 ├   ├── renderer
 ├
 ├── scripts
-├   ├── build.mjs                    Build script, for -> npm run build
-├   ├── watch.mjs                    Develop script, for -> npm run dev
+├   ├── build.mjs                    项目构建脚本，对应 npm run build
+├   ├── watch.mjs                    项目开发脚本，对应 npm run dev
 ├
 ├── src
-├   ├── main                         Main-process source code
-├   ├── preload                      Preload-script source code
-├   ├── renderer                     Renderer-process source code
+├   ├── main                         主进程源码
+├   ├── preload                      预加载脚本源码
+├   ├── renderer                     渲染进程源码
 ├
 ```
 
-## Use Electron, NodeJs API
+## 渲染进程使用 NodeJs API
 
-> 🚧 By default, Electron don't support the use of API related to Electron and NoeJs in the Renderer-process, but someone still need to use it. If so, you can see the 👉 npm-package **[vitejs-plugin-electron](https://www.npmjs.com/package/vitejs-plugin-electron)** or another template **[electron-vite-boilerplate](https://github.com/caoxiemeihao/electron-vite-boilerplate)**
+> 🚧 因为安全的原因 Electron 默认不支持在 渲染进程 中使用 NodeJs API。
 
-#### All Electron, NodeJs API invoke passed `Preload-script`
+#### 推荐所有的 NodeJs、Electron API 通过 `Preload-script` 注入到 渲染进程中，例如：
 
 * **src/preload/index.ts**
 
@@ -70,16 +60,9 @@ Once `dev` or `build` npm-script executed will be generate named `dist` folder. 
   contextBridge.exposeInMainWorld('ipcRenderer', ipcRenderer)
   ```
 
-* **src/renderer/src/main.ts**
+* **src/renderer/main.ts**
 
   ```typescript
   console.log('fs', window.fs)
   console.log('ipcRenderer', window.ipcRenderer)
   ```
-
-## Mian window
-<img width="400px" src="https://raw.githubusercontent.com/caoxiemeihao/blog/main/electron-vue-vite/screenshot/electron-15.png" />
-
-## Wechat
-
-<img width="244px" src="https://raw.githubusercontent.com/caoxiemeihao/blog/main/assets/wechat/group/qrcode.jpg" />
