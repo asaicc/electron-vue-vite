@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string }>();
 
-const count = ref(0)
+const count = ref(0);
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
-
+  <div class="area"><div class="test">测试绿色</div></div>
   <p>
     Recommended IDE setup:
     <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
@@ -33,7 +33,12 @@ const count = ref(0)
   </p>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.area {
+  .test {
+    color: red;
+  }
+}
 a {
   color: #42b983;
 }

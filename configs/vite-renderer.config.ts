@@ -15,6 +15,13 @@ export default defineConfig({
       "@": resolve("../src/renderer"),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "@/assets/scss/globalVariable.scss";',
+      },
+    },
+  },
   build: {
     emptyOutDir: true,
     outDir: "../../dist/renderer",
